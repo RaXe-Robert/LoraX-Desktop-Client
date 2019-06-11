@@ -1,0 +1,15 @@
+@import './scroll-bar';
+@import './variables';
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background-color: $secondary-bg;
+    margin: 0;
+    overflow: hidden;
+
+    color: $primary-text;
+}
