@@ -1,5 +1,5 @@
 <template>
-    <div id="wrapper">
+    <div id="settings">
         Coming soon
     </div>
 </template>

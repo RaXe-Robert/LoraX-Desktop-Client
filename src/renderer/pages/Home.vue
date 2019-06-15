@@ -1,15 +1,13 @@
 <template>
-    <div id="wrapper">
-        <div id="nav-container">
-            <div id="nav">
-                <div class="servers-button" v-on:click="$router.push({ name: 'servers' })">SERVERS</div>
-                <div class="stats-button" v-on:click="$router.push({ name: 'stats' })">STATS</div>
-                <div class="group-finder-button" v-on:click="$router.push({ name: 'group-finder' })">GROUP FINDER</div>
-                <div class="settings-button" v-on:click="$router.push({ name: 'settings' })">SETTINGS</div>
-                <div class="about-button" v-on:click="$router.push({ name: 'about' })">ABOUT</div>
-            </div>
+    <div id="home">
+        <div id="tab-nav">
+            <div class="servers-button" v-on:click="$router.push({ name: 'servers' })">SERVERS</div>
+            <div class="stats-button" v-on:click="$router.push({ name: 'stats' })">STATS</div>
+            <!-- <div class="group-finder-button" v-on:click="$router.push({ name: 'group-finder' })">GROUP FINDER</div>-->
+            <!-- <div class="settings-button" v-on:click="$router.push({ name: 'settings' })">SETTINGS</div>-->
+            <div class="about-button" v-on:click="$router.push({ name: 'about' })">ABOUT</div>
         </div>
-        <div id="content">
+        <div id="tab-content">
             <router-view></router-view>
         </div>
         <div id="footer">
@@ -34,8 +32,8 @@ export default {
         this.$store.dispatch
     },
     mounted() {
-        var notification = new Notification("It", { body: "works!" })
-        console.log("Created Notification:", notification)
+        if (this.$route.path == '/')
+            this.$router.push('/servers');
     },
     watch: {
         $route (to, from) {
@@ -48,45 +46,39 @@ export default {
 <style lang="scss" scoped>
 @import '~@/styles/variables';
 
-#wrapper {
-
+#home {
     height: 100%;
     display: flex;
     flex-direction: column;
 
-    #nav-container {
+    #tab-nav {
+        min-height: 40px;
+        font-size: 14px;
 
-            min-height: 40px;
-            border-bottom: 0.01em solid $primary-bg;
+        display: flex;
+        justify-content: flex-end;
 
-        #nav {
-            display: flex;
-            justify-content: flex-end;
-            width: 70%;
-            margin-left: auto;
+        border-bottom: 0.01em solid $primary-bg;
 
-            font-size: 14px;
+        & > * {
+            font-weight: bold;
+            line-height: 40px;
+            text-align: center;
+            min-width: fit-content;
+            width: 200px;
 
-            & > * {
-                font-weight: bold;
-                line-height: 40px;
-                text-align: center;
-                flex-grow: 1;
-
-                cursor: pointer;
-            }
-            & > *:hover  {
-                background-color: $primary-bg;
-            }
+            cursor: pointer;
         }
-        
+        & > *:hover  {
+            background-color: $primary-bg;
+        }
     }
 
-    #content {
+    #tab-content {
         flex-grow: 2;
 
         overflow-x: hidden;
-        overflow-y: scroll;
+        overflow-y: auto;
     }
 
     #footer {

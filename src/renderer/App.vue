@@ -10,7 +10,7 @@
                 <div class="close-application-button" v-on:click="closeApplication"></div>
             </div>
         </div>
-        <div id="content-wrapper">
+        <div id="main">
 		    <router-view></router-view>
         </div>
 	</div>
@@ -44,7 +44,7 @@ export default {
     width: 100%;
     height: 100%;
 
-    #content-wrapper {
+    #main {
         position: absolute;
         top: 50px;
         bottom: 0;
@@ -86,7 +86,8 @@ export default {
             color: $primary-text;
 
             & > * {
-                height: 100%;
+                margin: 20%;
+                height: 60%;
 
                 background-repeat: no-repeat;
                 background-size: cover;

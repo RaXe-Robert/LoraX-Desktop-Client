@@ -1,9 +1,16 @@
 <template>
-    <div id="wrapper">
+    <div id="about">
+        <h3>Join us at:</h3>
         <ul>
-            <li><div v-on:click="open('https://twitter.com/loraXgaming')">twitter</div></li>
-            <li><div v-on:click="open('https://discordapp.com/invite/VcyXdFc')">discord</div></li>
-            <li><div v-on:click="open('https://steamcommunity.com/groups/lorax-gaming')">steam</div></li>
+            <li><div v-on:click="open('https://twitter.com/loraXgaming')">Twitter</div></li>
+            <li><div v-on:click="open('https://discordapp.com/invite/VcyXdFc')">Discord</div></li>
+            <li><div v-on:click="open('https://steamcommunity.com/groups/lorax-gaming')">Steam</div></li>
+        </ul>
+        <h3>Contact</h3>
+        <ul>
+            <li><div v-on:click="open('https://steamcommunity.com/id/REALiAMcHETS')">iamchets</div></li>
+            <li><div v-on:click="open('https://steamcommunity.com/profiles/76561198038068361')">Lazydps</div></li>
+            <li><div v-on:click="open('https://steamcommunity.com/id/RaXe-Original')">Raxe</div></li>
         </ul>
     </div>
 </template>
@@ -19,7 +26,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-li {
-    cursor: pointer;
+#about {
+    h3 {
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+    
+    li {
+        cursor: pointer;
+    }
 }
 </style>

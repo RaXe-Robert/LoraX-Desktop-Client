@@ -1,5 +1,20 @@
 const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
 
+function getDefaults() {
+    return [
+        {
+            url: 'http://liberation.lorax.me:7779',
+            lobbyId: 90126622912849922,
+            data: undefined
+        },
+        {
+            url: 'http://rotations.lorax.me:7779',
+            lobbyId: 90126492542649346,
+            data: undefined
+        }
+    ];
+}
+
 export default {
     namespaced: true,
 	state: { 
@@ -15,18 +30,7 @@ export default {
     },
 	mutations: {
         RESET_SERVER_DATA (state) {
-            state.list = [
-                {
-                    url: 'http://liberation.lorax.me:7779',
-                    lobbyId: 90126622912849922,
-                    data: undefined
-                },
-                {
-                    url: 'http://rotations.lorax.me:7779',
-                    lobbyId: 90126492542649346,
-                    data: undefined
-                }
-            ];
+            state.list = getDefaults();
         },
         STORE_SERVER_DATA (state, { i, data }) {
             state.list[i].data = data;
