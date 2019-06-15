@@ -4,14 +4,10 @@
             <div class="logo" v-on:click="openWebsite"></div>
             <div class="draggable-spacer"></div>
             <div class="button-wrapper">
-                <div class="minimize-application-button" v-on:click="minimizeApplication">
-                    _
-                </div>
+                <div class="minimize-application-button" v-on:click="minimizeApplication"></div>
             </div>
             <div class="button-wrapper">
-                <div class="close-application-button" v-on:click="closeApplication">
-                    X
-                </div>
+                <div class="close-application-button" v-on:click="closeApplication"></div>
             </div>
         </div>
         <div id="content-wrapper">
@@ -90,8 +86,18 @@ export default {
             color: $primary-text;
 
             & > * {
-                flex-shrink: 0;
-                padding: 10px;
+                height: 100%;
+
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
+            .minimize-application-button {
+                background-image: url('~@/assets/minimize_white.png');
+            }
+
+            .close-application-button {
+                background-image: url('~@/assets/close_white.png');
             }
         }
         .button-wrapper:hover {
