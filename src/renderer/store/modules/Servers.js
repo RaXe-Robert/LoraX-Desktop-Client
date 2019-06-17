@@ -4,11 +4,13 @@ function getDefaults() {
     return [
         {
             url: 'http://liberation.lorax.me:7779',
+            connectUrl: 'liberation.lorax.me:7777',
             lobbyId: 90126622912849922,
             data: undefined
         },
         {
             url: 'http://rotations.lorax.me:7779',
+            connectUrl: 'rotations.lorax.me:7777',
             lobbyId: 90126492542649346,
             data: undefined
         }

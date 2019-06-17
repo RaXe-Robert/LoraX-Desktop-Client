@@ -2,7 +2,7 @@
     <div id="servers">
         <ul>
             <li v-for="(server, i) of servers" :key="i">
-                <server-listing :url="server.url" :lobbyId="server.lobbyId" :data="server.data" v-on:onClickAutoJoin="startAutoJoin(i)"></server-listing>
+                <server-listing :url="server.url" :connectUrl="server.connectUrl" :lobbyId="server.lobbyId" :data="server.data" v-on:onClickAutoJoin="startAutoJoin(i)"></server-listing>
             </li>
         </ul>
     </div>

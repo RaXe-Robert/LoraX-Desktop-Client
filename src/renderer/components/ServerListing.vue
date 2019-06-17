@@ -77,7 +77,7 @@ export default {
             // Create new element
             var el = document.createElement('textarea');
             // Set value (string to be copied)
-            el.value = 'blablabla';
+            el.value = 'connect ' + this.connectUrl;
             // Set non-editable to avoid focus and move outside of view
             el.setAttribute('readonly', '');
             el.style = {
@@ -108,6 +108,7 @@ export default {
     },
     props: {
         url: String,
+        connectUrl: String,
         lobbyId: Number,
         data: Object,
     }
