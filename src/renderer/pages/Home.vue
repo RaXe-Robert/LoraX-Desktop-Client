@@ -2,7 +2,7 @@
     <div id="home">
         <div id="tab-nav">
             <div class="servers-button" v-on:click="$router.push({ name: 'servers' })">SERVERS</div>
-            <div class="stats-button" v-on:click="$router.push({ name: 'stats' })">STATS</div>
+            <!--<div class="stats-button" v-on:click="$router.push({ name: 'stats' })">STATS</div>-->
             <!-- <div class="group-finder-button" v-on:click="$router.push({ name: 'group-finder' })">GROUP FINDER</div>-->
             <!-- <div class="settings-button" v-on:click="$router.push({ name: 'settings' })">SETTINGS</div>-->
             <div class="about-button" v-on:click="$router.push({ name: 'about' })">ABOUT</div>

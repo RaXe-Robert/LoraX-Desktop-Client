@@ -14,14 +14,14 @@ export default new Router({
                     path: '/servers',
                     name: 'servers',
                     component: require('@/pages/Servers').default,
-                    meta: {
-                        buttons: [
-                            {
-                                name: 'call admin',
-                                action: () => { console.log('hi'); }
-                            }
-                        ]
-                    }
+                    //meta: {
+                    //    buttons: [
+                    //        {
+                    //            name: 'call admin',
+                    //            action: () => { console.log('hi'); }
+                    //        }
+                    //    ]
+                    //}
                 },
                 {
                     path: '/stats',

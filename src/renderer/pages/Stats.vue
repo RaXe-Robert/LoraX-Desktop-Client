@@ -42,6 +42,7 @@ export default {
 @import '~@/styles/variables';
 
 #stats {
+    padding: 10px;
 
     #search-bar-container {
         width: 80%;

@@ -12,12 +12,12 @@
                 {{ currentPlayers }} / {{ maxPlayers }}
             </div>
         </div>
-        <div class="join-button" v-on:click="$emit('onClickAutoJoin')">
+        <!--<div class="join-button" v-on:click="$emit('onClickAutoJoin')">
             <div class="text">
                 auto-join
             </div>
             <div v-bind:class="['lint', (!isOnline || !isServerFull) ? 'conditional-background-color' : '']"></div>
-        </div>
+        </div>-->
         <div class="join-button" v-on:click="onClickJoin">
             <div class="text">
                 join
@@ -29,7 +29,7 @@
 <script>
 import { shell } from 'electron';
 
-//'steam://run/489940//-server_port=7777 lobby_id=90126445494971392 map=Derailed',
+// steam://run/489940//-server_port=7777 lobby_id=90126445494971392 map=Derailed',
 const battalionLaunchCommand = 'steam://run/489940//-server_port=7777';
 
 export default {
