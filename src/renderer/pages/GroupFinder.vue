@@ -1,6 +1,5 @@
 <template>
-    <div id="wrapper">
-        Coming soon
+    <div id="group-finder">
     </div>
 </template>
 
@@ -12,4 +11,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#group-finder {
+}
 </style>
