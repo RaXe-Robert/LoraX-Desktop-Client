@@ -19,7 +19,6 @@ req.keys().map(key => {
     return Vue.component(name, req(key).default);
 });
 
-/* eslint-disable no-new */
 window.vm = new Vue({
     components: { App },
     router,

@@ -15,8 +15,21 @@ let mainWindow;
 const frame = process.env.NODE_ENV === 'development';
 const winURL = process.env.NODE_ENV === 'development' ? `http://localhost:9080` : `file://${__dirname}/index.html`;
 
-if(require('electron-squirrel-startup')) 
+if (require('electron-squirrel-startup')) 
 {
+    app.quit();
+}
+
+var shouldQuit = app.makeSingleInstance(function (commandLine, workingDirectory) {
+    // Someone tried to run a second instance, we should focus our window.
+    if (mainWindow) {
+        if (mainWindow.isMinimized()) 
+            mainWindow.restore();
+        mainWindow.focus();
+    }
+});
+
+if (shouldQuit) {
     app.quit();
 }
 
@@ -37,7 +50,6 @@ function createWindow () {
         mainWindow = null;
     });
 }
-
 app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {

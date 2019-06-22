@@ -1,16 +1,23 @@
 <template>
     <div id="wrapper">
         <div v-bind:class="['info-container', !isOnline ? 'conditional-border-color' : '']">
-            <div class="name">{{ name }}</div>
-            <div v-bind:class="['mode', !isOnline ? 'conditional-border-color' : '']">{{ mode }}</div>
-            <div v-bind:class="['player-count', !isOnline ? 'conditional-border-color' : '']"> {{ currentPlayers }} / {{ maxPlayers }}</div>
+            <div v-on:click="copyToClipBoard" v-bind:class="['copy-to-clipboard', !isOnline ? ['conditional-background-color', 'conditional-border-color'] : '']"></div>
+            <div class="name">
+                {{ name }}
+            </div>
+            <div v-bind:class="['mode', !isOnline ? 'conditional-border-color' : '']">
+                {{ mode }}
+            </div>
+            <div v-bind:class="['player-count', !isOnline ? 'conditional-border-color' : '']">
+                {{ currentPlayers }} / {{ maxPlayers }}
+            </div>
         </div>
-        <div class="join-button" v-on:click="onClickAutoJoin">
+        <!--<div class="join-button" v-on:click="$emit('onClickAutoJoin')">
             <div class="text">
                 auto-join
             </div>
             <div v-bind:class="['lint', (!isOnline || !isServerFull) ? 'conditional-background-color' : '']"></div>
-        </div>
+        </div>-->
         <div class="join-button" v-on:click="onClickJoin">
             <div class="text">
                 join
@@ -22,7 +29,7 @@
 <script>
 import { shell } from 'electron';
 
-//'steam://run/489940//-server_port=7777 lobby_id=90126445494971392 map=Derailed',
+// steam://run/489940//-server_port=7777 lobby_id=90126445494971392 map=Derailed',
 const battalionLaunchCommand = 'steam://run/489940//-server_port=7777';
 
 export default {
@@ -66,19 +73,42 @@ export default {
         }
     },
     methods: {
+        copyToClipBoard() {
+            // Create new element
+            var el = document.createElement('textarea');
+            // Set value (string to be copied)
+            el.value = 'connect ' + this.connectUrl;
+            // Set non-editable to avoid focus and move outside of view
+            el.setAttribute('readonly', '');
+            el.style = {
+                position: 'absolute',
+                left: '-9999px'
+            };
+            document.body.appendChild(el);
+            // Select text inside element
+            el.select();
+            // Copy text to clipboard
+            document.execCommand('copy');
+            // Remove temporary element
+            document.body.removeChild(el);
+
+            var notification = new Notification("Lorax", {
+                body: "Copied to clipboard!" 
+            });
+        },
         onClickJoin() {
             if (!this.data)
                 return;
-            shell.openExternal(`${battalionLaunchCommand}%20-lobby_id=${this.lobbyId}%20-map=${this.data.MapName}`);
+                
+            this.joinServer();
         },
-        onClickAutoJoin() {
-            if (!this.data)
-                return;
+        joinServer() {
             shell.openExternal(`${battalionLaunchCommand}%20-lobby_id=${this.lobbyId}$20-map=${this.data.MapName}`);
         }
     },
     props: {
         url: String,
+        connectUrl: String,
         lobbyId: Number,
         data: Object,
     }
@@ -109,7 +139,7 @@ $unavailable: #ff0000;
 
     .info-container {
 
-        border-left: 30px solid;
+        border-left: 13px solid;
         border-color: $available;
 
         display: flex;
@@ -124,6 +154,25 @@ $unavailable: #ff0000;
             overflow: hidden;
         }
 
+        .copy-to-clipboard {
+            width: 50px - 20px;
+
+            padding: 0;
+            border-right: 8px solid;
+            border-color: $accent;
+            height: 50px;
+            margin: -8px;
+            cursor: pointer;
+
+            background: {
+                color: $accent;
+                image: url('~@/assets/copy_white.png');
+                repeat: no-repeat;
+                size: contain;
+                position: center;
+            }
+        }
+
         .name {
             width: 370px - 20px;
 
@@ -136,7 +185,7 @@ $unavailable: #ff0000;
         .mode {
             border-left: 3px solid;
             border-color: $available;
-            width: 120px - 20px;
+            width: 70px - 20px;
         }
 
         .player-count {

@@ -4,17 +4,13 @@
             <div class="logo" v-on:click="openWebsite"></div>
             <div class="draggable-spacer"></div>
             <div class="button-wrapper">
-                <div class="minimize-application-button" v-on:click="minimizeApplication">
-                    _
-                </div>
+                <div class="minimize-application-button" v-on:click="minimizeApplication"></div>
             </div>
             <div class="button-wrapper">
-                <div class="close-application-button" v-on:click="closeApplication">
-                    X
-                </div>
+                <div class="close-application-button" v-on:click="closeApplication"></div>
             </div>
         </div>
-        <div id="content-wrapper">
+        <div id="main">
 		    <router-view></router-view>
         </div>
 	</div>
@@ -48,7 +44,7 @@ export default {
     width: 100%;
     height: 100%;
 
-    #content-wrapper {
+    #main {
         position: absolute;
         top: 50px;
         bottom: 0;
@@ -66,9 +62,10 @@ export default {
         }
 
         .logo {
-            background-image: url('~@/assets/logo-lorax-simple.jpg');
+            background-image: url('~@/assets/logo256x256.png');
             background-size: cover;
             width: 50px;
+            margin-left: 5px;
 
             flex-shrink: 0;
             cursor: pointer;
@@ -90,8 +87,19 @@ export default {
             color: $primary-text;
 
             & > * {
-                flex-shrink: 0;
-                padding: 10px;
+                margin: 20%;
+                height: 60%;
+
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
+            .minimize-application-button {
+                background-image: url('~@/assets/minimize_white.png');
+            }
+
+            .close-application-button {
+                background-image: url('~@/assets/close_white.png');
             }
         }
         .button-wrapper:hover {

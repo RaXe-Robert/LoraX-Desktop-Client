@@ -1,8 +1,8 @@
 <template>
-    <div id="wrapper">
+    <div id="servers">
         <ul>
             <li v-for="(server, i) of servers" :key="i">
-                <server-listing :url="server.url" :lobbyId="server.lobbyId" :data="server.data"></server-listing>
+                <server-listing :url="server.url" :connectUrl="server.connectUrl" :lobbyId="server.lobbyId" :data="server.data" v-on:onClickAutoJoin="startAutoJoin(i)"></server-listing>
             </li>
         </ul>
     </div>
@@ -16,17 +16,26 @@ export default {
             return this.$store.getters['Servers/list']
         }
     },
+    methods: {
+        startAutoJoin(index) {
+            
+            console.log(index);
+            
+            var notification = new Notification("Lorax", {
+                body: "Auto join started!" 
+            });
+        }
+    }
 }
 </script>
 
 <style lang="scss" scoped>
 @import '~@/styles/variables';
 
-#wrapper {
+#servers {
     
     ul {
         padding: 0;
-
         max-width: 100%;
         
         li {

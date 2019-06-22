@@ -1,25 +1,26 @@
 const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
 
+function getDefaults() {
+    return [
+        {
+            url: 'http://liberation.lorax.me:7779',
+            connectUrl: 'liberation.lorax.me:7777',
+            lobbyId: 90126622912849922,
+            data: undefined
+        },
+        {
+            url: 'http://rotations.lorax.me:7779',
+            connectUrl: 'rotations.lorax.me:7777',
+            lobbyId: 90126492542649346,
+            data: undefined
+        }
+    ];
+}
+
 export default {
     namespaced: true,
 	state: { 
-        list: [
-            {
-                url: 'http://liberation.lorax.me:7779',
-                lobbyId: 90126408598897671,
-                data: undefined
-            },
-            {
-                url: 'http://coastal.lorax.me:7779',
-                lobbyId: 90126445494971392,
-                data: undefined
-            },
-            {
-                url: 'http://95.179.185.15:7779',
-                lobbyId: 90126492542649346,
-                data: undefined
-            }
-        ],
+        list: [],
 
         timeout: undefined,
         timeoutTime: 2000,
@@ -30,6 +31,9 @@ export default {
         }
     },
 	mutations: {
+        RESET_SERVER_DATA (state) {
+            state.list = getDefaults();
+        },
         STORE_SERVER_DATA (state, { i, data }) {
             state.list[i].data = data;
         },
@@ -39,7 +43,11 @@ export default {
         }
     },
 	actions: {
-        async startUpdateLoop ({ commit, state, dispatch, getters }) {
+        startUpdateLoop({ commit, dispatch }) {
+            commit('RESET_SERVER_DATA');
+            dispatch('updateLoop');
+        },
+        async updateLoop ({ commit, state, dispatch, getters }) {
             let servers = getters.list;
 
             for (let i = 0; i < servers.length; i++)
@@ -67,7 +75,7 @@ export default {
 
             setTimeout(() => {
                 commit('INCREASE_TIMEOUT_TIME');
-                dispatch('startUpdateLoop');
+                dispatch('updateLoop');
             }, state.timeoutTime);
         }
     }
