@@ -62,9 +62,10 @@ export default {
         }
 
         .logo {
-            background-image: url('~@/assets/logo-lorax-simple.jpg');
+            background-image: url('~@/assets/logo256x256.png');
             background-size: cover;
             width: 50px;
+            margin-left: 5px;
 
             flex-shrink: 0;
             cursor: pointer;

@@ -1,6 +1,6 @@
 {
   "name": "lorax-app",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "author": "Robert Bijl <robertbijl@live.nl>",
   "description": "The official loraX desktop client",
   "license": null,
@@ -16,8 +16,8 @@
     "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js"
   },
   "build": {
-    "productName": "desktopclient",
-    "appId": "com.loraxgaming.desktopclient",
+    "productName": "LoraX Client",
+    "appId": "com.loraxgaming.loraxclient",
     "directories": {
       "output": "build"
     },
@@ -75,7 +75,7 @@
     "del": "^3.0.0",
     "devtron": "^1.4.0",
     "electron": "^2.0.4",
-    "electron-builder": "^20.19.2",
+    "electron-builder": "^20.44.4",
     "electron-debug": "^1.5.0",
     "electron-devtools-installer": "^2.2.4",
     "file-loader": "^1.1.11",
